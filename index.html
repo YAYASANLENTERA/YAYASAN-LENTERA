@@ -165,27 +165,25 @@
     <!-- Navbar -->
     <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-20 gap-2">
                 
-                <!-- Logo & Judul + Keterangan -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
-                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993590/LOGO_YAYASAN_LENTERA_ojsckn.png" alt="Logo Yayasan Lentera" class="w-10 h-10 rounded-full object-contain bg-white p-0.5 shadow-lg">
-                    <div class="flex flex-col justify-center mt-0.5">
-                        <span class="font-bold text-2xl tracking-tight text-white drop-shadow-md text-shadow-strong leading-none" id="nav-brand">YAYASAN LENTERA</span>
-                        <!-- Keterangan Tambahan yang diminta -->
-                        <span class="text-[10px] tracking-[0.15em] text-white/90 font-semibold mt-1 drop-shadow-md transition-colors" id="nav-sub">KLUWUT - WONOSARI</span>
+                <!-- Logo & Judul + Keterangan (Dibuat responsif dan dibatasi lebarnya agar tidak mendorong ikon kanan) -->
+                <div class="flex items-center gap-2 sm:gap-3 cursor-pointer flex-1 min-w-0">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993590/LOGO_YAYASAN_LENTERA_ojsckn.png" alt="Logo Yayasan Lentera" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-contain bg-white p-0.5 shadow-lg shrink-0">
+                    <div class="flex flex-col justify-center mt-0.5 min-w-0">
+                        <span class="font-bold text-lg sm:text-2xl tracking-tight text-white drop-shadow-md text-shadow-strong leading-none truncate" id="nav-brand">YAYASAN LENTERA</span>
+                        <span class="text-[8px] sm:text-[10px] tracking-[0.15em] text-white/90 font-semibold mt-1 drop-shadow-md transition-colors truncate" id="nav-sub">KLUWUT - WONOSARI</span>
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <!-- Desktop Menu (Sengaja disembunyikan agar menu garis tiga tampil di PC, namun ID dijaga) -->
+                <div class="hidden">
                     <a href="#beranda" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Beranda</a>
                     <a href="#visimisi" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Visi & Misi</a>
                     <a href="#program" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Program</a>
                     <a href="#galeri" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Galeri</a>
                     <a href="#faq" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">FAQ</a>
                     
-                    <!-- Search & Dark Mode Buttons -->
                     <div class="flex items-center gap-2 border-l border-white/20 pl-4 ml-2" id="nav-actions-desktop">
                         <button id="search-btn-desktop" class="p-2 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md text-white transition focus:outline-none" aria-label="Cari">
                             <i data-lucide="search" class="w-5 h-5"></i>
@@ -197,23 +195,25 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center gap-3">
-                    <button id="search-btn-mobile" class="p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
-                        <i data-lucide="search" class="w-5 h-5"></i>
+                <!-- Menu Button Kanan (Sekarang dikunci "shrink-0" agar tidak tergeser keluar batas layar HP) -->
+                <div class="flex items-center gap-1 sm:gap-3 shrink-0">
+                    <button id="search-btn-mobile" class="p-1.5 sm:p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
+                        <i data-lucide="search" class="w-5 h-5 sm:w-5 sm:h-5"></i>
                     </button>
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
+                    <button id="theme-toggle-mobile" class="p-1.5 sm:p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
                         <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
                         <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
                     </button>
-                    <button id="mobile-menu-btn" class="text-white hover:text-lenteraGold-400 bg-black/30 p-2 rounded-lg transition focus:outline-none">
+                    <!-- Garis Tiga kini selalu tampil & anti hilang -->
+                    <button id="mobile-menu-btn" class="text-white hover:text-lenteraGold-400 bg-black/30 p-1.5 sm:p-2 rounded-lg transition focus:outline-none">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800 shadow-xl border-t dark:border-slate-700 absolute w-full max-h-screen overflow-y-auto">
+        
+        <!-- Menu Panel (Bisa untuk PC dan HP) -->
+        <div id="mobile-menu" class="hidden bg-white dark:bg-slate-800 shadow-xl border-t dark:border-slate-700 absolute w-full max-h-screen overflow-y-auto">
             <div class="px-4 pt-2 pb-6 space-y-2">
                 <a href="#beranda" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Beranda</a>
                 <a href="#visimisi" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Visi & Misi</a>
@@ -919,7 +919,7 @@
             }
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (Sekarang Berlaku di PC dan HP)
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         
@@ -964,7 +964,6 @@
         const searchBtns = [document.getElementById('search-btn-desktop'), document.getElementById('search-btn-mobile')];
         const closeSearchBtn = document.getElementById('close-search-btn');
 
-        // Data Pencarian Simulasi (Kamus)
         const searchData = [
             { title: "Visi & Misi Yayasan", url: "#visimisi", desc: "Tujuan, Visi, dan Misi Yayasan Lentera", keywords: ["visi", "misi", "tujuan", "cita"] },
             { title: "Program Pendidikan Dasar", url: "#program", desc: "Pendidikan dasar ilmu agama untuk mencetak generasi penerus", keywords: ["pendidikan", "dasar", "ngaji", "agama", "ilmu", "belajar"] },
@@ -1022,7 +1021,6 @@
             if (results.length > 0) {
                 searchEmpty.classList.add('hidden');
                 results.forEach(item => {
-                    // Highlight matching text softly
                     const regex = new RegExp(`(${query})`, "gi");
                     const highlightedTitle = item.title.replace(regex, `<span class="highlight-text">$1</span>`);
                     
@@ -1264,7 +1262,6 @@
             return aiKnowledge.default;
         }
 
-        // Logic Mengirim Pesan menggunakan FORM (Anti-Bug Keyboard)
         function sendMessage() {
             const text = chatInput.value.trim();
             if (!text) return;
@@ -1409,46 +1406,39 @@
 
         // --- ANIMASI SCROLL ELEGAN (REVEAL ANIMATION) ---
         const textSelectors = [
-            '#beranda span.inline-block', '#beranda h1', '#beranda p', '#hero-buttons', // Hero Section
-            '#visimisi h2', '#visimisi h3', '#visimisi p', '#visimisi blockquote', '#visimisi li', // Visi Misi
-            '#program h2', '#program p', '#program h3', '#program h4', '.group', // Program
-            '#galeri h2', '#galeri p', // Galeri
-            '#faq h2', '#faq p.text-lg', '.faq-item', // FAQ
-            '#kontak h4', '#kontak p', '#kontak span.font-bold', '.text-sm.text-slate-500' // Footer
+            '#beranda span.inline-block', '#beranda h1', '#beranda p', '#hero-buttons', 
+            '#visimisi h2', '#visimisi h3', '#visimisi p', '#visimisi blockquote', '#visimisi li',
+            '#program h2', '#program p', '#program h3', '#program h4', '.group', 
+            '#galeri h2', '#galeri p', 
+            '#faq h2', '#faq p.text-lg', '.faq-item', 
+            '#kontak h4', '#kontak p', '#kontak span.font-bold', '.text-sm.text-slate-500' 
         ];
 
         const elementsToAnimate = document.querySelectorAll(textSelectors.join(', '));
 
-        // 1. Menambahkan kelas dasar animasi ke semua elemen teks
         elementsToAnimate.forEach(el => {
             el.classList.add('reveal-element');
         });
 
-        // 2. Logika Observasi Scroll (Kapan muncul dan kapan hilang)
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Muncul dengan efek delay bergelombang agar elegan
                     const index = Array.from(elementsToAnimate).indexOf(entry.target);
                     entry.target.style.transitionDelay = `${(index % 4) * 80}ms`;
-                    
-                    // Teks dimunculkan
                     entry.target.classList.add('reveal-visible');
                 } else {
-                    // Teks dihilangkan secara instan saat terlewat
                     entry.target.style.transitionDelay = '0ms';
                     entry.target.classList.remove('reveal-visible');
                 }
             });
         }, {
             root: null,
-            rootMargin: '0px 0px -5% 0px', // Muncul sedikit sebelum pas di tengah layar
-            threshold: 0.15 // Aktif saat 15% bagian elemen sudah terlihat
+            rootMargin: '0px 0px -5% 0px',
+            threshold: 0.15 
         });
 
-        // 3. Mulai pantau semua elemen
         elementsToAnimate.forEach(el => scrollObserver.observe(el));
 
     </script>
 </body>
-</html>
+                        </html>
