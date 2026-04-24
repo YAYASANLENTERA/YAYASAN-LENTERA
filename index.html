@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yayasan Lentera - Mencerahkan Generasi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Konfigurasi Tema Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        lenteraGreen: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        lenteraGold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .smooth-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+        }
+        .dark .smooth-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+        }
+        .text-shadow-strong {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        /* Animasi Tombol Bawah (Pulse) */
+        @keyframes soft-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(234, 179, 8, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+        }
+        .animate-soft-pulse {
+            animation: soft-pulse 2.5s infinite;
+        }
+
+        /* Animasi Mengetik Bot AI */
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* Menyembunyikan Scrollbar pada Gallery agar rapi */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Padding aman untuk HP */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        /* WHATSAPP SPECIFIC STYLES */
+        .wa-bg-light { background-color: #efeae2; }
+        .wa-bg-dark { background-color: #0b141a; }
+        .wa-chat-bg {
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M54.627 0l.83.83-5.57 5.57a31.91 31.91 0 0 0-3.3-2.316l4.63-4.63-.83-.83-4.62 4.62A31.85 31.85 0 0 0 42 1.427V0h-1v1.17c-1.3-.23-2.63-.38-4-.45V0h-1v.68c-1.34.02-2.67.12-4 .29V0h-1v1.12a31.89 31.89 0 0 0-3.88 1.05l-3.3-3.3-.83.83 3.48 3.48a31.96 31.96 0 0 0-3.31 2.31L13.84 0l-.83.83 5.43 5.43c-.87.69-1.7 1.42-2.48 2.2L12.04 4.54l-.83.83 3.82 3.82c-.7.86-1.35 1.76-1.95 2.7L9.5 8.31l-.83.83 3.48 3.48a31.94 31.94 0 0 0-2.32 3.3L5.43 11.5l-.83.83 4.29 4.29a32.06 32.06 0 0 0-1.04 3.89H6.7V21h1.16a31.91 31.91 0 0 0-.44 4H6.7V26h.69a31.83 31.83 0 0 0 .28 4H6.7V31h1.13c.27 1.32.62 2.62 1.05 3.88H5.43l.83.83 3.3-3.3a31.9 31.9 0 0 0 2.31 3.3l-4.29 4.29.83.83 4.29-4.29c.77.85 1.58 1.66 2.45 2.43L11.5 54.57l.83.83 5.43-5.43c.86.7 1.76 1.35 2.7 1.95l-3.82 3.82.83.83 3.82-3.82a31.9 31.9 0 0 0 3.3 2.31l-3.48 3.48.83.83 3.48-3.48a31.88 31.88 0 0 0 3.88 1.05v1.13h1v-1.16a31.91 31.91 0 0 0 4 .44V60h1v-.69c1.34-.02 2.67-.12 4-.28V60h1v-1.13a31.88 31.88 0 0 0 3.88-1.05l3.3 3.3.83-.83-3.48-3.48a31.9 31.9 0 0 0 3.31-2.31l4.29 4.29.83-.83-4.29-4.29c.85-.77 1.66-1.58 2.43-2.45l4.3 4.3.83-.83-4.3-4.3c.7-.86 1.35-1.76 1.95-2.7l3.82 3.82.83-.83-3.82-3.82a31.9 31.9 0 0 0 2.31-3.3l3.48 3.48.83-.83-3.48-3.48a31.88 31.88 0 0 0 1.05-3.88h1.13V29h-1.16a31.91 31.91 0 0 0-.44-4h.69V24h-.69a31.83 31.83 0 0 0-.28-4h1.13V19h-1.13a31.88 31.88 0 0 0-1.05-3.88h3.44l-.83-.83-3.3 3.3a31.9 31.9 0 0 0-2.31-3.3l4.29-4.29-.83-.83-4.29 4.29c-.77-.85-1.58-1.66-2.45-2.43l4.3-4.3zM29 35a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="%23000000" fill-opacity="0.05" fill-rule="evenodd"/%3E%3C/svg%3E');
+        }
+        .dark .wa-chat-bg {
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M54.627 0l.83.83-5.57 5.57a31.91 31.91 0 0 0-3.3-2.316l4.63-4.63-.83-.83-4.62 4.62A31.85 31.85 0 0 0 42 1.427V0h-1v1.17c-1.3-.23-2.63-.38-4-.45V0h-1v.68c-1.34.02-2.67.12-4 .29V0h-1v1.12a31.89 31.89 0 0 0-3.88 1.05l-3.3-3.3-.83.83 3.48 3.48a31.96 31.96 0 0 0-3.31 2.31L13.84 0l-.83.83 5.43 5.43c-.87.69-1.7 1.42-2.48 2.2L12.04 4.54l-.83.83 3.82 3.82c-.7.86-1.35 1.76-1.95 2.7L9.5 8.31l-.83.83 3.48 3.48a31.94 31.94 0 0 0-2.32 3.3L5.43 11.5l-.83.83 4.29 4.29a32.06 32.06 0 0 0-1.04 3.89H6.7V21h1.16a31.91 31.91 0 0 0-.44 4H6.7V26h.69a31.83 31.83 0 0 0 .28 4H6.7V31h1.13c.27 1.32.62 2.62 1.05 3.88H5.43l.83.83 3.3-3.3a31.9 31.9 0 0 0 2.31 3.3l-4.29 4.29.83.83 4.29-4.29c.77.85 1.58 1.66 2.45 2.43L11.5 54.57l.83.83 5.43-5.43c.86.7 1.76 1.35 2.7 1.95l-3.82 3.82.83.83 3.82-3.82a31.9 31.9 0 0 0 3.3 2.31l-3.48 3.48.83.83 3.48-3.48a31.88 31.88 0 0 0 3.88 1.05v1.13h1v-1.16a31.91 31.91 0 0 0 4 .44V60h1v-.69c1.34-.02 2.67-.12 4-.28V60h1v-1.13a31.88 31.88 0 0 0 3.88-1.05l3.3 3.3.83-.83-3.48-3.48a31.9 31.9 0 0 0 3.31-2.31l4.29 4.29.83-.83-4.29-4.29c.85-.77 1.66-1.58 2.43-2.45l4.3 4.3.83-.83-4.3-4.3c.7-.86 1.35-1.76 1.95-2.7l3.82 3.82.83-.83-3.82-3.82a31.9 31.9 0 0 0 2.31-3.3l3.48 3.48.83-.83-3.48-3.48a31.88 31.88 0 0 0 1.05-3.88h1.13V29h-1.16a31.91 31.91 0 0 0-.44-4h.69V24h-.69a31.83 31.83 0 0 0-.28-4h1.13V19h-1.13a31.88 31.88 0 0 0-1.05-3.88h3.44l-.83-.83-3.3 3.3a31.9 31.9 0 0 0-2.31-3.3l4.29-4.29-.83-.83-4.29 4.29c-.77-.85-1.58-1.66-2.45-2.43l4.3-4.3zM29 35a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="%23ffffff" fill-opacity="0.03" fill-rule="evenodd"/%3E%3C/svg%3E');
+        }
+
+        .wa-bubble-tail-left {
+            position: absolute;
+            top: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-top: 0px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 12px solid white;
+        }
+        .dark .wa-bubble-tail-left { border-right-color: #202c33; }
+        
+        .wa-bubble-tail-right {
+            position: absolute;
+            top: 0;
+            right: -8px;
+            width: 0;
+            height: 0;
+            border-top: 0px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid #d9fdd3;
+        }
+        .dark .wa-bubble-tail-right { border-left-color: #005c4b; }
+
+        /* Dynamic Viewport Height (DVH) untuk HP */
+        #ai-chat-container {
+            height: 100vh;
+            height: 100dvh; 
+        }
+
+        /* Highlight Text Pencarian */
+        .highlight-text {
+            background-color: rgba(250, 204, 21, 0.4);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* Animasi Scroll Modern & Elegan */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(35px) scale(0.97);
+            filter: blur(5px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform, filter;
+        }
+        .reveal-element.reveal-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased selection:bg-lenteraGold-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo & Judul + Keterangan -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993590/LOGO_YAYASAN_LENTERA_ojsckn.png" alt="Logo Yayasan Lentera" class="w-10 h-10 rounded-full object-contain bg-white p-0.5 shadow-lg">
+                    <div class="flex flex-col justify-center mt-0.5">
+                        <span class="font-bold text-2xl tracking-tight text-white drop-shadow-md text-shadow-strong leading-none" id="nav-brand">YAYASAN LENTERA</span>
+                        <!-- Keterangan Tambahan yang diminta -->
+                        <span class="text-[10px] tracking-[0.15em] text-white/90 font-semibold mt-1 drop-shadow-md transition-colors" id="nav-sub">KLUWUT - WONOSARI</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#beranda" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Beranda</a>
+                    <a href="#visimisi" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Visi & Misi</a>
+                    <a href="#program" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Program</a>
+                    <a href="#galeri" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Galeri</a>
+                    <a href="#faq" class="font-semibold text-white hover:text-lenteraGold-400 transition text-sm lg:text-base" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8);">FAQ</a>
+                    
+                    <!-- Search & Dark Mode Buttons -->
+                    <div class="flex items-center gap-2 border-l border-white/20 pl-4 ml-2" id="nav-actions-desktop">
+                        <button id="search-btn-desktop" class="p-2 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md text-white transition focus:outline-none" aria-label="Cari">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </button>
+                        <button id="theme-toggle" class="p-2 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md text-white transition focus:outline-none" aria-label="Dark Mode">
+                            <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                            <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="search-btn-mobile" class="p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full bg-black/30 text-white transition focus:outline-none">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-white hover:text-lenteraGold-400 bg-black/30 p-2 rounded-lg transition focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800 shadow-xl border-t dark:border-slate-700 absolute w-full max-h-screen overflow-y-auto">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#beranda" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Beranda</a>
+                <a href="#visimisi" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Visi & Misi</a>
+                <a href="#program" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Program</a>
+                <a href="#galeri" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Galeri Kegiatan</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">FAQ</a>
+                <a href="#kontak" class="block px-3 py-2 rounded-md font-medium text-slate-800 dark:text-slate-200 hover:bg-lenteraGreen-50 dark:hover:bg-slate-700">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal Fitur Pencarian Website -->
+    <div id="search-modal" class="fixed inset-0 z-[120] hidden bg-slate-900/90 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="absolute top-0 w-full bg-white dark:bg-slate-900 rounded-b-3xl shadow-2xl transform -translate-y-full transition-transform duration-300 p-4 sm:p-6" id="search-panel">
+            <div class="max-w-3xl mx-auto">
+                <div class="flex items-center gap-3 bg-slate-100 dark:bg-slate-800 rounded-full px-4 sm:px-6 py-2 border border-slate-200 dark:border-slate-700 focus-within:border-lenteraGreen-500 dark:focus-within:border-lenteraGreen-500 transition-colors">
+                    <i data-lucide="search" class="w-6 h-6 text-slate-400 shrink-0"></i>
+                    <input type="text" id="search-input" placeholder="Cari informasi... (misal: yatim, program, visi)" class="flex-1 bg-transparent text-lg md:text-xl focus:outline-none text-slate-800 dark:text-white py-2 w-full" autocomplete="off">
+                    <button id="close-search-btn" class="p-2 -mr-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 transition focus:outline-none">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <!-- Hasil Pencarian -->
+                <div id="search-results" class="mt-6 flex flex-col gap-2 max-h-[60vh] overflow-y-auto hide-scrollbar pb-4 px-2">
+                    <!-- Data injeksi via Javascript -->
+                </div>
+                <div id="search-empty" class="hidden mt-8 text-center text-slate-500 dark:text-slate-400">
+                    <i data-lucide="file-question" class="w-12 h-12 mx-auto mb-3 opacity-50"></i>
+                    <p>Hasil pencarian tidak ditemukan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-950">
+        <!-- Slideshow Background -->
+        <div class="absolute inset-0 z-0">
+            <div id="hero-slideshow" class="absolute inset-0 w-full h-full">
+                <!-- Slide 1-7 -->
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-100 pointer-events-auto flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993582/IMG-20260423-WA0012_yzdqcn.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993582/IMG-20260423-WA0012_yzdqcn.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 1">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993581/IMG-20260423-WA0014_spqtol.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993581/IMG-20260423-WA0014_spqtol.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 2">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0008_deppxw.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0008_deppxw.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 3">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0009_upfdtf.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0009_upfdtf.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 4">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993578/IMG-20260423-WA0017_e9zbmd.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993578/IMG-20260423-WA0017_e9zbmd.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 5">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993577/IMG-20260423-WA0016_n39bha.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993577/IMG-20260423-WA0016_n39bha.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 6">
+                </div>
+                <div class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in-out opacity-0 pointer-events-none flex items-center justify-center">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993576/IMG-20260423-WA0015_djwvr3.jpg" class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30" alt="">
+                    <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993576/IMG-20260423-WA0015_djwvr3.jpg" class="relative w-full h-full object-contain pt-10" alt="Slide 7">
+                </div>
+            </div>
+            
+            <div class="absolute top-0 w-full h-32 bg-gradient-to-b from-black/80 to-transparent"></div>
+            <div class="absolute bottom-0 w-full h-64 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/70 dark:via-slate-900/70 to-transparent"></div>
+        </div>
+
+        <!-- Teks Beranda dengan Animasi Scroll Elegan -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-10">
+            <span class="inline-block py-1 px-4 rounded-full bg-lenteraGreen-500/80 text-white font-semibold text-sm mb-6 border border-lenteraGreen-400 backdrop-blur-md shadow-lg">
+                Lembaga Sosial & Pendidikan Islami
+            </span>
+            <h1 class="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6 text-shadow-strong">
+                Membangun Generasi <br> 
+                <span class="text-lenteraGold-400">Berakhlak & Berilmu</span>
+            </h1>
+            <p class="mt-4 text-lg md:text-2xl text-white max-w-3xl mx-auto mb-10 font-medium text-shadow-strong">
+                Pusat pendidikan Al-Qur'an dan kegiatan sosial kemasyarakatan untuk mewujudkan lingkungan yang islami, nyaman, dan penuh kepedulian.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center drop-shadow-xl" id="hero-buttons">
+                <a href="#program" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold rounded-full text-slate-900 bg-lenteraGold-400 hover:bg-lenteraGold-500 transition-all shadow-[0_0_20px_rgba(250,204,21,0.4)] hover:shadow-[0_0_30px_rgba(250,204,21,0.6)] hover:-translate-y-1">
+                    Lihat Program Kami
+                </a>
+                <a href="#kontak" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-bold rounded-full text-white bg-black/40 hover:bg-black/60 border border-white/50 backdrop-blur-md transition-all hover:-translate-y-1">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 w-full leading-[0] transform translate-y-1 z-10">
+            <svg class="relative block w-[calc(100%+1.3px)] h-[60px] md:h-[120px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,121.32,201.5,114.32,246.3,109.84,284.14,84.4,321.39,56.44Z" class="fill-slate-50 dark:fill-slate-900"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Visi & Misi Section -->
+    <section id="visimisi" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-lenteraGreen-700 dark:text-lenteraGreen-400">Visi & Misi</h2>
+                <div class="w-24 h-1.5 bg-lenteraGold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <!-- Visi Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="bg-white dark:bg-slate-800 rounded-[2rem] p-8 md:p-10 smooth-shadow h-full border-t-4 border-lenteraGold-500 relative z-10 transition-transform duration-300 hover:-translate-y-2">
+                        <div class="w-full h-64 bg-slate-100 dark:bg-slate-700/50 rounded-xl mb-6 flex items-center justify-center p-2 border border-slate-200 dark:border-slate-600">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993576/IMG-20260423-WA0015_djwvr3.jpg" alt="Foto Visi Yayasan" class="max-w-full max-h-full object-contain rounded-lg drop-shadow-md">
+                        </div>
+                        
+                        <div class="w-14 h-14 bg-lenteraGreen-100 dark:bg-lenteraGreen-900/50 rounded-2xl flex items-center justify-center mb-6 text-lenteraGreen-600 dark:text-lenteraGreen-400">
+                            <i data-lucide="eye" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6 text-slate-800 dark:text-white">Visi Yayasan</h3>
+                        <blockquote class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium italic leading-relaxed">
+                            "Terwujudnya generasi yang berakhlak mulia, berilmu agama yang kuat, serta peduli terhadap sesama dalam kehidupan bermasyarakat."
+                        </blockquote>
+                        <i data-lucide="quote" class="absolute bottom-8 right-8 w-20 h-20 text-slate-100 dark:text-slate-700/50 -z-10"></i>
+                    </div>
+                </div>
+
+                <!-- Misi Card -->
+                <div class="lg:col-span-7">
+                    <div class="bg-lenteraGreen-600 dark:bg-slate-800 rounded-[2rem] p-8 md:p-10 smooth-shadow h-full text-white relative overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-lenteraGreen-500 dark:bg-slate-700 rounded-full mix-blend-overlay filter blur-3xl opacity-50"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="w-full h-72 bg-black/20 dark:bg-slate-700/50 rounded-xl mb-8 flex items-center justify-center p-2 border border-lenteraGreen-400/30 dark:border-slate-600">
+                                <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0008_deppxw.jpg" alt="Foto Misi Yayasan" class="max-w-full max-h-full object-contain rounded-lg drop-shadow-lg">
+                            </div>
+
+                            <div class="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 text-lenteraGold-400">
+                                <i data-lucide="target" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-8 text-white">Misi Kami</h3>
+                            
+                            <ul class="space-y-5">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-lenteraGold-500 flex items-center justify-center mt-1 mr-4">
+                                        <i data-lucide="check" class="w-4 h-4 text-lenteraGreen-900"></i>
+                                    </div>
+                                    <p class="text-lenteraGreen-50 dark:text-slate-200 text-lg">Menyelenggarakan pendidikan Al-Qur’an dan ilmu agama Islam secara rutin, terarah, dan berkualitas.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-lenteraGold-500 flex items-center justify-center mt-1 mr-4">
+                                        <i data-lucide="check" class="w-4 h-4 text-lenteraGreen-900"></i>
+                                    </div>
+                                    <p class="text-lenteraGreen-50 dark:text-slate-200 text-lg">Menanamkan nilai-nilai keimanan, ketakwaan, dan akhlak mulia dalam kehidupan sehari-hari.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-lenteraGold-500 flex items-center justify-center mt-1 mr-4">
+                                        <i data-lucide="check" class="w-4 h-4 text-lenteraGreen-900"></i>
+                                    </div>
+                                    <p class="text-lenteraGreen-50 dark:text-slate-200 text-lg">Membimbing santri agar mampu membaca, memahami, dan mengamalkan Al-Qur’an.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-lenteraGold-500 flex items-center justify-center mt-1 mr-4">
+                                        <i data-lucide="check" class="w-4 h-4 text-lenteraGreen-900"></i>
+                                    </div>
+                                    <p class="text-lenteraGreen-50 dark:text-slate-200 text-lg">Mendorong kepedulian sosial melalui kegiatan keagamaan dan kemasyarakatan.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-lenteraGold-500 flex items-center justify-center mt-1 mr-4">
+                                        <i data-lucide="check" class="w-4 h-4 text-lenteraGreen-900"></i>
+                                    </div>
+                                    <p class="text-lenteraGreen-50 dark:text-slate-200 text-lg">Membangun lingkungan belajar yang nyaman, islami, dan mendukung perkembangan karakter santri.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section id="program" class="py-20 bg-white dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-lenteraGreen-700 dark:text-lenteraGreen-400">Program Yayasan Lentera</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">Kami berdedikasi melalui berbagai program pendidikan dan sosial untuk memberikan manfaat seluas-luasnya bagi masyarakat.</p>
+                <div class="w-24 h-1.5 bg-lenteraGold-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <!-- Program Pendidikan -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="p-3 bg-lenteraGreen-100 dark:bg-lenteraGreen-900/40 rounded-xl text-lenteraGreen-600 dark:text-lenteraGreen-400">
+                        <i data-lucide="book-open" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white">Program Pendidikan</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Item Pendidikan 1-5 -->
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-lenteraGreen-400 dark:hover:border-lenteraGreen-500 transition-colors group smooth-shadow hover:-translate-y-2 flex flex-col">
+                        <div class="h-56 bg-slate-200 dark:bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993578/IMG-20260423-WA0017_e9zbmd.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md" alt="Program Pendidikan">
+                            <div class="absolute top-4 left-4 w-10 h-10 bg-lenteraGold-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">1</div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">Pendidikan Dasar</h4>
+                            <p class="text-slate-600 dark:text-slate-400">Penyelenggaraan pendidikan dasar ilmu agama untuk mencetak generasi penerus yang cerdas secara spiritual.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-lenteraGreen-400 dark:hover:border-lenteraGreen-500 transition-colors group smooth-shadow hover:-translate-y-2 flex flex-col">
+                        <div class="h-56 bg-slate-200 dark:bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0009_upfdtf.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md" alt="Program PAUL">
+                            <div class="absolute top-4 left-4 w-10 h-10 bg-lenteraGold-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">2</div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">PAUL</h4>
+                            <p class="text-slate-600 dark:text-slate-400">Pendidikan Al-Qur'an Usia Lanjut. Membimbing para lansia agar tetap semangat dalam belajar dan membaca Al-Qur'an.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-lenteraGreen-400 dark:hover:border-lenteraGreen-500 transition-colors group smooth-shadow hover:-translate-y-2 flex flex-col">
+                        <div class="h-56 bg-slate-200 dark:bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993580/IMG-20260423-WA0007_yksrac.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md" alt="Khotmil Quran">
+                            <div class="absolute top-4 left-4 w-10 h-10 bg-lenteraGold-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">3</div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">Khotmil Qur'an</h4>
+                            <p class="text-slate-600 dark:text-slate-400">Program rutin penyelesaian bacaan Al-Qur'an (Khataman) untuk memperkuat ikatan spiritual dan silaturahmi.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-lenteraGreen-400 dark:hover:border-lenteraGreen-500 transition-colors group smooth-shadow hover:-translate-y-2 flex flex-col">
+                        <div class="h-56 bg-slate-200 dark:bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993583/IMG-20260423-WA0013_s49ip9.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md" alt="Pengajian Umum">
+                            <div class="absolute top-4 left-4 w-10 h-10 bg-lenteraGold-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">4</div>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">Pengajian Umum</h4>
+                            <p class="text-slate-600 dark:text-slate-400">Majelis taklim yang terbuka untuk masyarakat luas guna menambah wawasan keislaman dan mempererat ukhuwah.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 hover:border-lenteraGreen-400 dark:hover:border-lenteraGreen-500 transition-colors group smooth-shadow hover:-translate-y-2 flex flex-col">
+                        <div class="h-56 bg-gradient-to-br from-lenteraGreen-400 to-lenteraGreen-600 w-full flex items-center justify-center">
+                            <i data-lucide="plus-circle" class="w-20 h-20 text-white/50 group-hover:scale-110 transition-transform duration-500"></i>
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <h4 class="text-xl font-semibold text-slate-800 dark:text-white mb-2">Dan Lain-lain</h4>
+                            <p class="text-slate-600 dark:text-slate-400">Beragam program pendidikan insidental lainnya yang disesuaikan dengan kebutuhan masyarakat sekitar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program Sosial -->
+            <div>
+                <div class="flex items-center gap-4 mb-8 mt-20">
+                    <div class="p-3 bg-lenteraGold-100 dark:bg-lenteraGold-900/30 rounded-xl text-lenteraGold-600 dark:text-lenteraGold-400">
+                        <i data-lucide="heart-handshake" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white">Program Sosial</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex flex-col bg-gradient-to-br from-white to-lenteraGreen-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl overflow-hidden border border-lenteraGreen-100 dark:border-slate-700 smooth-shadow hover:-translate-y-2 transition-transform group">
+                        <div class="h-64 bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993576/IMG-20260423-WA0015_djwvr3.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" alt="Santunan Anak Yatim">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+                            <h4 class="absolute bottom-4 left-6 text-2xl font-bold text-white drop-shadow-md">Santunan Anak Yatim</h4>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">Memberikan dukungan moril dan materiil secara berkala untuk anak-anak yatim guna memastikan kesejahteraan dan meringankan beban hidup mereka.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col bg-gradient-to-br from-white to-lenteraGold-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl overflow-hidden border border-lenteraGold-100 dark:border-slate-700 smooth-shadow hover:-translate-y-2 transition-transform group">
+                        <div class="h-64 bg-slate-800 w-full relative flex items-center justify-center p-2">
+                            <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993577/IMG-20260423-WA0016_n39bha.jpg" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" alt="Pendidikan Gratis">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
+                            <h4 class="absolute bottom-4 left-6 text-2xl font-bold text-white drop-shadow-md">Pendidikan Gratis</h4>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg">Menyediakan akses pendidikan secara cuma-cuma khusus untuk anak-anak yatim dan kaum dhuafa agar mereka mendapatkan hak belajar yang layak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Kegiatan Section -->
+    <section id="galeri" class="py-20 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-lenteraGreen-700 dark:text-lenteraGreen-400">Galeri Kegiatan</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 text-lg">Momen-momen berharga dalam berbagai kegiatan Yayasan Lentera.</p>
+                <div class="w-24 h-1.5 bg-lenteraGold-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <!-- Slider Wrapper -->
+            <div class="relative group">
+                <!-- Tombol Navigasi Kiri -->
+                <button id="scroll-left" class="absolute left-2 md:-ml-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-lenteraGold-500 text-slate-800 dark:text-white hover:text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg border border-slate-200 dark:border-slate-700 backdrop-blur-sm transition-all opacity-80 group-hover:opacity-100 focus:opacity-100">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Gallery Container (Scrollable) -->
+                <div id="gallery-container" class="flex overflow-x-auto gap-4 md:gap-6 snap-x snap-mandatory hide-scrollbar py-4 px-2" style="scroll-behavior: smooth;">
+                    <!-- Gambar Galeri 1-13 -->
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993583/IMG-20260423-WA0013_s49ip9.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 1">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993582/IMG-20260423-WA0012_yzdqcn.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 2">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993581/IMG-20260423-WA0014_spqtol.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 3">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993581/IMG-20260423-WA0011_zv0xjw.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 4">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993580/IMG-20260423-WA0005_df8ags.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 5">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993581/IMG-20260423-WA0010_dj9r9g.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 6">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0008_deppxw.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 7">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993580/IMG-20260423-WA0007_yksrac.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 8">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993579/IMG-20260423-WA0009_upfdtf.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 9">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993578/IMG-20260423-WA0006_fg2moy.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 10">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993578/IMG-20260423-WA0017_e9zbmd.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 11">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993577/IMG-20260423-WA0016_n39bha.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 12">
+                    </div>
+                    <div class="snap-center shrink-0 w-72 h-80 sm:w-80 sm:h-96 bg-black/5 dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-200 dark:border-slate-700 flex items-center justify-center p-2 relative group/item hover:border-lenteraGreen-400 transition-colors cursor-pointer">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993576/IMG-20260423-WA0015_djwvr3.jpg" class="max-w-full max-h-full object-contain rounded-xl group-hover/item:scale-105 transition-transform duration-500" alt="Galeri 13">
+                    </div>
+                </div>
+
+                <!-- Tombol Navigasi Kanan -->
+                <button id="scroll-right" class="absolute right-2 md:-mr-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-slate-800/80 hover:bg-lenteraGold-500 text-slate-800 dark:text-white hover:text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg border border-slate-200 dark:border-slate-700 backdrop-blur-sm transition-all opacity-80 group-hover:opacity-100 focus:opacity-100">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Swipe indicator for mobile -->
+            <div class="text-center mt-6 text-slate-400 text-sm flex items-center justify-center gap-2 md:hidden">
+                <i data-lucide="move-horizontal" class="w-4 h-4"></i> Geser untuk melihat foto lainnya
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-lenteraGreen-700 dark:text-lenteraGreen-400">FAQ Pertanyaan</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 text-lg">Informasi cepat mengenai yayasan dan program-program kami.</p>
+                <div class="w-24 h-1.5 bg-lenteraGold-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-bold text-lg text-slate-800 dark:text-white">Apa itu Yayasan Lentera?</span>
+                        <div class="faq-icon w-8 h-8 rounded-full bg-lenteraGreen-100 dark:bg-slate-700 flex items-center justify-center text-lenteraGreen-600 dark:text-lenteraGreen-400 transition-transform duration-300 shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 bg-white dark:bg-slate-800/80 px-6">
+                        <p class="pb-6 text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-700">
+                            Yayasan Lentera adalah lembaga sosial dan pendidikan bernuansa islami yang sangat peduli pada pembentukan karakter. Visi utama kami adalah mewujudkan generasi penerus yang tidak hanya memiliki ilmu agama yang kuat, tetapi juga berakhlak mulia dan punya kepedulian tinggi terhadap sesama di masyarakat.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-bold text-lg text-slate-800 dark:text-white">Program pendidikan apa saja yang diselenggarakan?</span>
+                        <div class="faq-icon w-8 h-8 rounded-full bg-lenteraGreen-100 dark:bg-slate-700 flex items-center justify-center text-lenteraGreen-600 dark:text-lenteraGreen-400 transition-transform duration-300 shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 bg-white dark:bg-slate-800/80 px-6">
+                        <p class="pb-6 text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-700">
+                            Fokus pendidikan kami sangat menyeluruh, mencakup semua kalangan usia! Kami menyelenggarakan Pendidikan Agama Dasar, <b>PAUL</b> (Pendidikan Al-Qur'an Usia Lanjut) agar lansia tetap produktif mengaji, kegiatan <b>Khotmil Qur'an</b> rutin, hingga <b>Pengajian Umum</b> yang bisa diikuti masyarakat luas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-bold text-lg text-slate-800 dark:text-white">Apakah Yayasan Lentera menyalurkan bantuan sosial?</span>
+                        <div class="faq-icon w-8 h-8 rounded-full bg-lenteraGreen-100 dark:bg-slate-700 flex items-center justify-center text-lenteraGreen-600 dark:text-lenteraGreen-400 transition-transform duration-300 shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 bg-white dark:bg-slate-800/80 px-6">
+                        <p class="pb-6 text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-700">
+                            Tentu saja! Kepedulian sosial adalah denyut nadi kami. Kami memiliki program unggulan berupa <b>Santunan Anak Yatim</b> secara rutin serta menyediakan akses <b>Pendidikan Gratis</b> yang dikhususkan bagi anak-anak yatim dan kaum dhuafa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-bold text-lg text-slate-800 dark:text-white">Di mana lokasi sekretariat Yayasan Lentera?</span>
+                        <div class="faq-icon w-8 h-8 rounded-full bg-lenteraGreen-100 dark:bg-slate-700 flex items-center justify-center text-lenteraGreen-600 dark:text-lenteraGreen-400 transition-transform duration-300 shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 bg-white dark:bg-slate-800/80 px-6">
+                        <p class="pb-6 text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-700">
+                            Anda bisa bersilaturahmi atau berkunjung ke Sekretariat Yayasan kami yang berlokasi di <b>Jln Raya Gunung Kawi, Dusun Kluwut, RT 03 / RW 01, Desa Kluwut, Kecamatan Wonosari, Kabupaten Malang, Jawa Timur</b>. Pintu kami selalu terbuka!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 (Tambahan Admin) -->
+                <div class="faq-item bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300 border-l-4 border-l-lenteraGold-500">
+                    <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                        <span class="font-bold text-lg text-slate-800 dark:text-white">Bagaimana cara menghubungi admin atau mendaftar program?</span>
+                        <div class="faq-icon w-8 h-8 rounded-full bg-lenteraGold-100 dark:bg-slate-700 flex items-center justify-center text-lenteraGold-600 dark:text-lenteraGold-400 transition-transform duration-300 shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 bg-white dark:bg-slate-800/80 px-6">
+                        <p class="pb-6 text-slate-600 dark:text-slate-300 leading-relaxed pt-2 border-t border-slate-100 dark:border-slate-700">
+                            Untuk pendaftaran program, pertanyaan lebih lanjut, atau layanan donasi, <b>SILAKAN MENGKLIK TOMBOL WARNA KUNING DI BAWAH SEBELAH KANAN</b> layar Anda agar dapat menghubungi bagian admin Yayasan Lentera melalui WhatsApp maupun akun media sosial resmi kami. Admin kami siap melayani Anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Kontak -->
+    <footer id="kontak" class="bg-slate-900 text-slate-300 border-t-4 border-lenteraGold-500 relative overflow-hidden">
+        <!-- Pattern Overlay -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                
+                <!-- Info Yayasan -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993590/LOGO_YAYASAN_LENTERA_ojsckn.png" alt="Logo Yayasan" class="w-10 h-10 rounded-full object-contain bg-white p-0.5">
+                        <span class="font-bold text-2xl text-white tracking-tight">YAYASAN LENTERA</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Berdedikasi untuk mencetak generasi berakhlak mulia, berilmu agama yang kuat, serta senantiasa peduli terhadap sesama.
+                    </p>
+                </div>
+
+                <!-- Alamat -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-lg font-bold text-white mb-6 uppercase tracking-wider">Hubungi / Kunjungi Kami</h4>
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="p-3 bg-slate-800 rounded-lg text-lenteraGold-400 shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <p class="text-slate-300 text-lg font-medium mb-1">Sekretariat Yayasan</p>
+                            <p class="text-slate-400 leading-relaxed">
+                                Jln Raya Gunung Kawi, Dusun Kluwut,<br>
+                                Desa Kluwut RT 03 / RW 01,<br>
+                                Kecamatan Wonosari, Kabupaten Malang,<br>
+                                Jawa Timur.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Copyright & Editor Info -->
+            <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-slate-500 text-center md:text-left">
+                    &copy; <script>document.write(new Date().getFullYear())</script> Yayasan Lentera. Seluruh Hak Cipta Dilindungi.
+                </p>
+                <p class="text-xs text-slate-500 italic font-medium tracking-wide">
+                    edited by media al falah
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI CHAT PANEL (MENGAMBANG DI TENGAH, ANTI TERPOTONG KEYBOARD) -->
+    <div id="ai-chat-container" class="fixed inset-0 z-[110] hidden flex-col items-center justify-center p-3 sm:p-6 transition-all duration-300">
+        <!-- Backdrop transparan (Klik di sini menutup chat) -->
+        <div id="ai-chat-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 cursor-pointer"></div>
+        
+        <!-- Chat Panel Box (Relative z-10 agar di atas backdrop) -->
+        <div id="ai-chat-panel" class="relative z-10 w-full max-w-[420px] h-full max-h-[680px] bg-[#efeae2] dark:bg-[#0b141a] rounded-2xl shadow-2xl border border-slate-300 dark:border-slate-700 flex flex-col transition-all duration-300 opacity-0 scale-95 overflow-hidden">
+            
+            <!-- Header (Fixed height) -->
+            <div class="bg-[#008069] dark:bg-[#202c33] px-3 py-2 flex items-center justify-between shrink-0 shadow-sm z-20 h-[65px]">
+                
+                <!-- Bagian Kiri (Profil & Nama) -->
+                <div class="flex items-center gap-3 w-full">
+                    <div class="w-10 h-10 rounded-full bg-white p-0.5 relative shrink-0">
+                        <img src="https://res.cloudinary.com/dlekzscaq/image/upload/v1776993590/LOGO_YAYASAN_LENTERA_ojsckn.png" class="w-full h-full object-contain rounded-full" alt="AI Avatar">
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <h4 class="text-white font-medium text-[16px] leading-tight font-sans truncate">Asisten Lentera</h4>
+                        <span id="ai-status" class="text-white/80 text-[13px] leading-tight font-sans truncate">online</span>
+                    </div>
+                </div>
+
+                <!-- Ikon Kanan (Tutup X) -->
+                <div class="flex items-center shrink-0">
+                    <button id="close-ai-panel-btn" class="text-white p-1.5 rounded-full hover:bg-white/20 transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Area Percakapan (Scrollable) -->
+            <div id="ai-chat-body" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3 wa-bg-light dark:wa-bg-dark wa-chat-bg font-sans" style="-webkit-overflow-scrolling: touch;">
+                
+                <!-- Info Enkripsi -->
+                <div class="flex justify-center w-full mb-2 mt-1">
+                    <div class="bg-[#FFEECD] dark:bg-[#182229] text-slate-600 dark:text-[#ffd279] text-[12px] px-3 py-1.5 rounded-lg shadow-sm text-center max-w-[90%] font-medium">
+                        <i data-lucide="lock" class="w-3 h-3 inline-block mb-0.5"></i> Pesan ini dienkripsi secara end-to-end. AI ini dilatih khusus untuk Yayasan Lentera.
+                    </div>
+                </div>
+
+                <!-- Pesan Pertama (Kiri) -->
+                <div class="flex justify-start w-full">
+                    <div class="bg-white dark:bg-[#202c33] text-[#111b21] dark:text-[#e9edef] px-3 pt-2 pb-2.5 rounded-lg shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] max-w-[90%] relative text-[14.5px] leading-relaxed ml-2">
+                        <div class="wa-bubble-tail-left"></div>
+                        <span class="break-words">Assalamu'alaikum! 👋 Saya AI Asisten Yayasan Lentera.<br><br>Saya siap membantu Anda menjawab pertanyaan seputar <b>Visi, Misi, Program Pendidikan, Program Sosial, atau Alamat lokasi kami</b>.<br><br>Ada yang ingin Anda tanyakan?</span>
+                        <span class="inline-block w-10"></span>
+                        <div class="absolute bottom-1 right-2 text-[11px] text-slate-500 dark:text-slate-400" id="initial-msg-time"></div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <!-- Area Ketik Pesan (FORM, Fix untuk Keyboard HP) -->
+            <form id="ai-chat-form" class="bg-[#f0f2f5] dark:bg-[#202c33] px-2 py-2.5 flex items-end gap-2 shrink-0 border-t border-slate-300 dark:border-slate-700 z-20 shadow-[0_-1px_2px_rgba(0,0,0,0.05)] w-full m-0 pb-safe">
+                <!-- Kotak Input -->
+                <div class="flex-1 bg-white dark:bg-[#2a3942] rounded-3xl flex items-end px-3 py-1.5 shadow-sm min-h-[46px] relative">
+                    <i data-lucide="smile" class="w-6 h-6 text-[#8696a0] shrink-0 mb-1.5 cursor-pointer absolute left-3 bottom-2.5"></i>
+                    <input type="text" id="ai-chat-input" placeholder="Ketik pesan..." class="flex-1 bg-transparent text-[15px] text-[#111b21] dark:text-white focus:outline-none placeholder-[#8696a0] pl-10 pr-2 py-1 h-full mb-1 w-full" autocomplete="off">
+                </div>
+                <!-- Tombol Kirim -->
+                <button type="submit" id="ai-chat-send" class="w-[46px] h-[46px] rounded-full bg-[#00a884] hover:bg-[#008f6f] text-white flex items-center justify-center shrink-0 transition-transform shadow-sm disabled:opacity-50 disabled:cursor-not-allowed mb-0 active:scale-95">
+                    <i data-lucide="send" class="w-5 h-5 ml-1"></i>
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Toggle Button AI Kiri Bawah (HANYA LOGO ROBOT) -->
+    <div class="fixed bottom-6 left-4 sm:left-6 z-[100]">
+        <button id="toggle-ai" class="w-14 h-14 bg-lenteraGreen-600 hover:bg-lenteraGreen-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform duration-300 hover:scale-110 focus:outline-none border-2 border-white/20">
+            <i data-lucide="bot" class="w-7 h-7"></i>
+        </button>
+    </div>
+
+    <!-- Floating Contact Button KANAN BAWAH -->
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
+        <!-- Menus (Hidden by default) -->
+        <div id="contact-menu" class="hidden flex-col gap-3 transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-none items-end">
+            <button onclick="handleContactClick(event, this, 'https://wa.me/6281232217224')" class="contact-btn flex items-center justify-center bg-white dark:bg-slate-800 h-12 w-12 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 overflow-hidden pointer-events-auto group p-0">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-6 h-6 flex-shrink-0 object-contain">
+                <span class="contact-label font-bold text-sm opacity-0 max-w-0 overflow-hidden transition-all duration-300 whitespace-nowrap text-[#25D366]">WhatsApp</span>
+            </button>
+            <button onclick="handleContactClick(event, this, 'https://www.instagram.com/yayasan_lentera_kluwut?igsh=MW02M2hxNjVrc2w1OA==')" class="contact-btn flex items-center justify-center bg-white dark:bg-slate-800 h-12 w-12 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 overflow-hidden pointer-events-auto group p-0">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="w-6 h-6 flex-shrink-0 object-contain">
+                <span class="contact-label font-bold text-sm opacity-0 max-w-0 overflow-hidden transition-all duration-300 whitespace-nowrap text-[#E1306C]">Instagram</span>
+            </button>
+            <button onclick="handleContactClick(event, this, 'https://youtube.com/')" class="contact-btn flex items-center justify-center bg-white dark:bg-slate-800 h-12 w-12 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 overflow-hidden pointer-events-auto group p-0">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube" class="w-6 h-6 flex-shrink-0 object-contain">
+                <span class="contact-label font-bold text-sm opacity-0 max-w-0 overflow-hidden transition-all duration-300 whitespace-nowrap text-[#FF0000]">YouTube</span>
+            </button>
+            <button onclick="handleContactClick(event, this, 'https://maps.app.goo.gl/pyh3osZkQwdhmE3a6?g_st=aw')" class="contact-btn flex items-center justify-center bg-white dark:bg-slate-800 h-12 w-12 rounded-full shadow-lg border border-slate-100 dark:border-slate-700 transition-all duration-300 overflow-hidden pointer-events-auto group p-0">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps" class="w-6 h-6 flex-shrink-0 object-contain">
+                <span class="contact-label font-bold text-sm opacity-0 max-w-0 overflow-hidden transition-all duration-300 whitespace-nowrap text-[#4285F4]">Maps</span>
+            </button>
+        </div>
+        
+        <button id="toggle-contact" class="w-14 h-14 bg-lenteraGold-500 hover:bg-lenteraGold-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform duration-300 hover:scale-110 focus:outline-none animate-soft-pulse border-2 border-white/20">
+            <i data-lucide="message-square" id="toggle-icon-1" class="w-6 h-6 absolute transition-all duration-300 transform scale-100 rotate-0"></i>
+            <i data-lucide="x" id="toggle-icon-2" class="w-6 h-6 absolute transition-all duration-300 transform scale-0 rotate-90"></i>
+        </button>
+    </div>
+
+    <!-- Lightbox Modal untuk Memperbesar Foto -->
+    <div id="lightbox" class="fixed inset-0 z-[9999] bg-black/95 hidden flex items-center justify-center p-4 sm:p-8 opacity-0 transition-opacity duration-300 backdrop-blur-sm cursor-pointer">
+        <button id="close-lightbox" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-lenteraGold-400 p-2 z-10 bg-white/10 rounded-full transition-colors border border-white/20 shadow-lg">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 cursor-default m-auto" alt="Enlarged Image">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navBrand = document.getElementById('nav-brand');
+        const navSub = document.getElementById('nav-sub');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                // Scrolled
+                navbar.classList.add('bg-white/95', 'dark:bg-slate-900/95', 'backdrop-blur-md', 'shadow-md', 'dark:border-b', 'dark:border-slate-800');
+                
+                const links = navbar.querySelectorAll('a:not(.bg-black\\/40)');
+                if(!document.documentElement.classList.contains('dark')) {
+                     links.forEach(l => { 
+                         l.classList.remove('text-white'); 
+                         l.classList.add('text-slate-800'); 
+                         l.style.textShadow = 'none';
+                     });
+                     
+                     navBrand.classList.remove('text-white');
+                     navBrand.classList.add('text-lenteraGreen-700');
+                     navBrand.style.textShadow = 'none';
+
+                     navSub.classList.remove('text-white/90');
+                     navSub.classList.add('text-lenteraGreen-600');
+                     navSub.classList.remove('drop-shadow-md');
+                     
+                     document.getElementById('theme-toggle').classList.replace('text-white', 'text-slate-700');
+                     document.getElementById('theme-toggle').classList.replace('bg-black/30', 'bg-slate-200');
+                     document.getElementById('theme-toggle').classList.replace('hover:bg-black/50', 'hover:bg-slate-300');
+
+                     document.getElementById('search-btn-desktop').classList.replace('text-white', 'text-slate-700');
+                     document.getElementById('search-btn-desktop').classList.replace('bg-black/30', 'bg-slate-200');
+                     document.getElementById('search-btn-desktop').classList.replace('hover:bg-black/50', 'hover:bg-slate-300');
+                     
+                     document.getElementById('theme-toggle-mobile').classList.replace('text-white', 'text-slate-700');
+                     document.getElementById('theme-toggle-mobile').classList.replace('bg-black/30', 'bg-slate-200');
+
+                     document.getElementById('search-btn-mobile').classList.replace('text-white', 'text-slate-700');
+                     document.getElementById('search-btn-mobile').classList.replace('bg-black/30', 'bg-slate-200');
+                     
+                     document.getElementById('mobile-menu-btn').classList.replace('text-white', 'text-slate-800');
+                     document.getElementById('mobile-menu-btn').classList.replace('bg-black/30', 'bg-transparent');
+                }
+            } else {
+                // Top
+                navbar.classList.remove('bg-white/95', 'dark:bg-slate-900/95', 'backdrop-blur-md', 'shadow-md', 'dark:border-b', 'dark:border-slate-800');
+                
+                const links = navbar.querySelectorAll('a:not(.bg-black\\/40)');
+                links.forEach(l => { 
+                    l.classList.remove('text-slate-800'); 
+                    l.classList.add('text-white'); 
+                    l.style.textShadow = '0 2px 4px rgba(0,0,0,0.8)';
+                });
+                
+                navBrand.classList.add('text-white');
+                navBrand.classList.remove('text-lenteraGreen-700');
+                navBrand.style.textShadow = '';
+
+                navSub.classList.add('text-white/90');
+                navSub.classList.remove('text-lenteraGreen-600');
+                navSub.classList.add('drop-shadow-md');
+
+                document.getElementById('theme-toggle').classList.replace('text-slate-700', 'text-white');
+                document.getElementById('theme-toggle').classList.replace('bg-slate-200', 'bg-black/30');
+                document.getElementById('theme-toggle').classList.replace('hover:bg-slate-300', 'hover:bg-black/50');
+
+                document.getElementById('search-btn-desktop').classList.replace('text-slate-700', 'text-white');
+                document.getElementById('search-btn-desktop').classList.replace('bg-slate-200', 'bg-black/30');
+                document.getElementById('search-btn-desktop').classList.replace('hover:bg-slate-300', 'hover:bg-black/50');
+
+                document.getElementById('theme-toggle-mobile').classList.replace('text-slate-700', 'text-white');
+                document.getElementById('theme-toggle-mobile').classList.replace('bg-slate-200', 'bg-black/30');
+
+                document.getElementById('search-btn-mobile').classList.replace('text-slate-700', 'text-white');
+                document.getElementById('search-btn-mobile').classList.replace('bg-slate-200', 'bg-black/30');
+
+                document.getElementById('mobile-menu-btn').classList.replace('text-slate-800', 'text-white');
+                document.getElementById('mobile-menu-btn').classList.replace('bg-transparent', 'bg-black/30');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Dark Mode Toggle Logic
+        const html = document.documentElement;
+        const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                if (html.classList.contains('dark')) {
+                    localStorage.theme = 'dark';
+                } else {
+                    localStorage.theme = 'light';
+                }
+                window.dispatchEvent(new Event('scroll'));
+            });
+        });
+
+        // --- FITUR PENCARIAN WEBSITE ---
+        const searchModal = document.getElementById('search-modal');
+        const searchPanel = document.getElementById('search-panel');
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const searchEmpty = document.getElementById('search-empty');
+        const searchBtns = [document.getElementById('search-btn-desktop'), document.getElementById('search-btn-mobile')];
+        const closeSearchBtn = document.getElementById('close-search-btn');
+
+        // Data Pencarian Simulasi (Kamus)
+        const searchData = [
+            { title: "Visi & Misi Yayasan", url: "#visimisi", desc: "Tujuan, Visi, dan Misi Yayasan Lentera", keywords: ["visi", "misi", "tujuan", "cita"] },
+            { title: "Program Pendidikan Dasar", url: "#program", desc: "Pendidikan dasar ilmu agama untuk mencetak generasi penerus", keywords: ["pendidikan", "dasar", "ngaji", "agama", "ilmu", "belajar"] },
+            { title: "PAUL (Pendidikan Al-Qur'an Usia Lanjut)", url: "#program", desc: "Membimbing lansia agar tetap semangat membaca Al-Qur'an", keywords: ["paul", "lansia", "lanjut usia", "orang tua", "quran", "tua"] },
+            { title: "Khotmil Qur'an", url: "#program", desc: "Program rutin penyelesaian bacaan Al-Qur'an", keywords: ["khotmil", "khataman", "quran", "baca"] },
+            { title: "Pengajian Umum", url: "#program", desc: "Majelis taklim yang terbuka untuk masyarakat luas", keywords: ["pengajian", "majelis", "taklim", "umum", "masyarakat"] },
+            { title: "Program Sosial & Santunan Yatim", url: "#program", desc: "Santunan rutin untuk anak yatim guna memastikan kesejahteraan", keywords: ["sosial", "yatim", "santunan", "bantuan", "donasi"] },
+            { title: "Pendidikan Gratis Dhuafa", url: "#program", desc: "Pendidikan cuma-cuma khusus anak yatim dan kaum dhuafa", keywords: ["gratis", "dhuafa", "miskin", "bebas biaya", "bantuan"] },
+            { title: "Galeri & Dokumentasi Kegiatan", url: "#galeri", desc: "Momen berharga dalam berbagai kegiatan Yayasan Lentera", keywords: ["galeri", "foto", "dokumentasi", "gambar", "kegiatan"] },
+            { title: "FAQ (Pertanyaan Umum)", url: "#faq", desc: "Jawaban atas pertanyaan-pertanyaan umum seputar Yayasan Lentera", keywords: ["faq", "tanya", "pertanyaan", "jawab", "bantuan"] },
+            { title: "Lokasi & Kontak Yayasan", url: "#kontak", desc: "Alamat sekretariat dan info kontak Yayasan Lentera", keywords: ["kontak", "hubungi", "alamat", "lokasi", "sekretariat", "admin", "telepon", "wa", "whatsapp"] }
+        ];
+
+        function openSearch() {
+            document.body.classList.add('overflow-hidden');
+            searchModal.classList.remove('hidden');
+            setTimeout(() => {
+                searchModal.classList.remove('opacity-0');
+                searchPanel.classList.remove('-translate-y-full');
+                searchInput.focus();
+                searchInput.value = '';
+                searchResults.innerHTML = '';
+                searchEmpty.classList.add('hidden');
+            }, 10);
+        }
+
+        function closeSearch() {
+            document.body.classList.remove('overflow-hidden');
+            searchModal.classList.add('opacity-0');
+            searchPanel.classList.add('-translate-y-full');
+            setTimeout(() => searchModal.classList.add('hidden'), 300);
+        }
+
+        searchBtns.forEach(btn => btn.addEventListener('click', openSearch));
+        closeSearchBtn.addEventListener('click', closeSearch);
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) closeSearch();
+        });
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (query === '') {
+                searchEmpty.classList.add('hidden');
+                return;
+            }
+
+            const results = searchData.filter(item => {
+                return item.title.toLowerCase().includes(query) || 
+                       item.desc.toLowerCase().includes(query) || 
+                       item.keywords.some(k => k.includes(query));
+            });
+
+            if (results.length > 0) {
+                searchEmpty.classList.add('hidden');
+                results.forEach(item => {
+                    // Highlight matching text softly
+                    const regex = new RegExp(`(${query})`, "gi");
+                    const highlightedTitle = item.title.replace(regex, `<span class="highlight-text">$1</span>`);
+                    
+                    const el = document.createElement('a');
+                    el.href = item.url;
+                    el.className = "flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition border border-transparent hover:border-slate-200 dark:hover:border-slate-700 cursor-pointer text-left";
+                    el.innerHTML = `
+                        <div class="mt-1 bg-lenteraGreen-100 dark:bg-lenteraGreen-900/50 p-2 rounded-lg text-lenteraGreen-600 dark:text-lenteraGreen-400 shrink-0">
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 dark:text-white text-lg">${highlightedTitle}</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">${item.desc}</p>
+                        </div>
+                    `;
+                    el.addEventListener('click', () => {
+                        closeSearch();
+                    });
+                    searchResults.appendChild(el);
+                });
+                lucide.createIcons();
+            } else {
+                searchEmpty.classList.remove('hidden');
+            }
+        });
+
+        // Hero Background Slideshow Logic
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        if (slides.length > 0) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('opacity-100', 'pointer-events-auto');
+                slides[currentSlide].classList.add('opacity-0', 'pointer-events-none');
+                
+                currentSlide = (currentSlide + 1) % slides.length;
+                
+                slides[currentSlide].classList.remove('opacity-0', 'pointer-events-none');
+                slides[currentSlide].classList.add('opacity-100', 'pointer-events-auto');
+            }, 5000);
+        }
+
+        // Logic Scroll Galeri Kegiatan
+        const galleryContainer = document.getElementById('gallery-container');
+        const scrollLeftBtn = document.getElementById('scroll-left');
+        const scrollRightBtn = document.getElementById('scroll-right');
+
+        if(scrollLeftBtn && scrollRightBtn && galleryContainer) {
+            scrollLeftBtn.addEventListener('click', () => {
+                galleryContainer.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+            scrollRightBtn.addEventListener('click', () => {
+                galleryContainer.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+        }
+
+        // Logic FAQ Accordion
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const iconContainer = this.querySelector('.faq-icon');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    if (iconContainer) iconContainer.classList.remove('rotate-45');
+                } else {
+                    document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
+                    document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-45'));
+                    
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    if (iconContainer) iconContainer.classList.add('rotate-45');
+                }
+            });
+        });
+
+        // Floating Contact Kanan Logic
+        const toggleBtnContact = document.getElementById('toggle-contact');
+        const contactMenu = document.getElementById('contact-menu');
+        const cIcon1 = document.getElementById('toggle-icon-1');
+        const cIcon2 = document.getElementById('toggle-icon-2');
+        let isContactMenuOpen = false;
+
+        toggleBtnContact.addEventListener('click', () => {
+            isContactMenuOpen = !isContactMenuOpen;
+            
+            if (isContactMenuOpen) {
+                if (isAiPanelOpen) { toggleAiChat(); }
+
+                contactMenu.classList.remove('hidden');
+                setTimeout(() => { contactMenu.classList.remove('translate-y-4', 'opacity-0'); }, 10);
+                
+                cIcon1.classList.replace('scale-100', 'scale-0');
+                cIcon1.classList.replace('rotate-0', '-rotate-90');
+                cIcon2.classList.replace('scale-0', 'scale-100');
+                cIcon2.classList.replace('rotate-90', 'rotate-0');
+            } else {
+                contactMenu.classList.add('translate-y-4', 'opacity-0');
+                cIcon1.classList.replace('scale-0', 'scale-100');
+                cIcon1.classList.replace('-rotate-90', 'rotate-0');
+                cIcon2.classList.replace('scale-100', 'scale-0');
+                cIcon2.classList.replace('rotate-0', 'rotate-90');
+
+                document.querySelectorAll('.contact-btn').forEach(btn => {
+                    btn.classList.remove('w-auto', 'px-5');
+                    btn.classList.add('w-12', 'p-0');
+                    const label = btn.querySelector('.contact-label');
+                    label.classList.remove('ml-3');
+                    label.classList.replace('opacity-100', 'opacity-0');
+                    label.classList.replace('max-w-[120px]', 'max-w-0');
+                });
+                
+                setTimeout(() => { if (!isContactMenuOpen) contactMenu.classList.add('hidden'); }, 300);
+            }
+        });
+
+        function handleContactClick(event, element, url) {
+            const label = element.querySelector('.contact-label');
+            if (element.classList.contains('w-12')) {
+                event.preventDefault(); 
+                document.querySelectorAll('.contact-btn').forEach(btn => {
+                    btn.classList.remove('w-auto', 'px-5');
+                    btn.classList.add('w-12', 'p-0');
+                    const otherLabel = btn.querySelector('.contact-label');
+                    otherLabel.classList.remove('ml-3');
+                    otherLabel.classList.replace('opacity-100', 'opacity-0');
+                    otherLabel.classList.replace('max-w-[120px]', 'max-w-0');
+                });
+                element.classList.remove('w-12', 'p-0');
+                element.classList.add('w-auto', 'px-5');
+                label.classList.add('ml-3');
+                label.classList.replace('opacity-0', 'opacity-100');
+                label.classList.replace('max-w-0', 'max-w-[120px]');
+            } else {
+                window.open(url, '_blank');
+            }
+        }
+
+        // --- ASISTEN LENTERA (AI CHATBOT) LOGIC ---
+        const toggleAiBtn = document.getElementById('toggle-ai');
+        const aiChatContainer = document.getElementById('ai-chat-container'); 
+        const aiChatPanel = document.getElementById('ai-chat-panel');
+        const aiChatBackdrop = document.getElementById('ai-chat-backdrop');
+        const closeAiBtn = document.getElementById('close-ai-panel-btn');
+        
+        const chatForm = document.getElementById('ai-chat-form');
+        const chatInput = document.getElementById('ai-chat-input');
+        const chatSendBtn = document.getElementById('ai-chat-send');
+        const chatBody = document.getElementById('ai-chat-body');
+        const aiStatus = document.getElementById('ai-status');
+        
+        let isAiPanelOpen = false;
+
+        function getWaTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+        }
+        
+        const initialTimeEl = document.getElementById('initial-msg-time');
+        if(initialTimeEl) initialTimeEl.innerText = getWaTime();
+
+        function toggleAiChat() {
+            isAiPanelOpen = !isAiPanelOpen;
+            if (isAiPanelOpen) {
+                if(isContactMenuOpen) document.getElementById('toggle-contact').click();
+                
+                document.body.classList.add('overflow-hidden');
+
+                aiChatContainer.classList.remove('hidden');
+                aiChatContainer.classList.add('flex');
+                
+                setTimeout(() => { 
+                    aiChatBackdrop.classList.remove('opacity-0');
+                    aiChatPanel.classList.remove('opacity-0', 'scale-95');
+                }, 10);
+                
+                setTimeout(scrollToBottom, 50);
+            } else {
+                document.body.classList.remove('overflow-hidden');
+
+                aiChatBackdrop.classList.add('opacity-0');
+                aiChatPanel.classList.add('opacity-0', 'scale-95');
+                
+                setTimeout(() => { 
+                    if (!isAiPanelOpen) {
+                        aiChatContainer.classList.remove('flex');
+                        aiChatContainer.classList.add('hidden'); 
+                    }
+                }, 300);
+            }
+        }
+
+        toggleAiBtn.addEventListener('click', toggleAiChat);
+        if(closeAiBtn) closeAiBtn.addEventListener('click', toggleAiChat);
+        if(aiChatBackdrop) aiChatBackdrop.addEventListener('click', toggleAiChat); 
+
+        function scrollToBottom() {
+            if(chatBody) {
+                setTimeout(() => {
+                    chatBody.scrollTo({
+                        top: chatBody.scrollHeight,
+                        behavior: 'smooth' 
+                    });
+                }, 50);
+            }
+        }
+
+        const aiKnowledge = {
+            visi: "Visi Yayasan Lentera adalah:<br><b>“Terwujudnya generasi yang berakhlak mulia, berilmu agama yang kuat, serta peduli terhadap sesama dalam kehidupan bermasyarakat.”</b>",
+            misi: "Misi Yayasan Lentera meliputi:<br>1. Menyelenggarakan pendidikan Al-Qur’an dan ilmu agama Islam secara rutin, terarah, dan berkualitas.<br>2. Menanamkan nilai-nilai keimanan, ketakwaan, dan akhlak mulia dalam kehidupan sehari-hari.<br>3. Membimbing santri agar mampu membaca, memahami, dan mengamalkan Al-Qur’an.<br>4. Mendorong kepedulian sosial melalui kegiatan keagamaan dan kemasyarakatan.<br>5. Membangun lingkungan belajar yang nyaman, islami, dan mendukung perkembangan karakter santri.",
+            pendidikan: "Program Pendidikan Yayasan Lentera meliputi:<br>1. <b>Pendidikan Umum</b><br>2. <b>PAUL</b> (Pendidikan Al-Qur'an Usia Lanjut).<br>3. <b>Khotmil Qur'an</b>.<br>4. <b>Pengajian Umum</b>.<br>5. Dan lain-lain.",
+            paul: "<b>PAUL</b> adalah singkatan dari Pendidikan Al-Qur'an Usia Lanjut. Program ini membimbing para lansia agar tetap semangat belajar dan membaca Al-Qur'an.",
+            sosial: "Program Sosial Yayasan Lentera:<br>1. <b>Santunan Anak Yatim</b>.<br>2. <b>Pendidikan Gratis</b> untuk anak Yatim dan dhuafa'.",
+            yatim: "Untuk anak yatim dan dhuafa', Yayasan Lentera memiliki program unggulan berupa <b>Santunan Anak Yatim</b> dan penyediaan akses <b>Pendidikan secara Gratis</b>.",
+            gratis: "Benar! Kami menyediakan akses <b>Pendidikan Gratis</b> yang dikhususkan bagi anak-anak yatim dan dhuafa' agar mereka mendapat hak belajar yang layak.",
+            lokasi: "Sekretariat Yayasan Lentera berlokasi di:<br><b>Jln Raya Gunung Kawi, Dusun Kluwut, Desa Kluwut RT 03 / RW 01, Kecamatan Wonosari, Kabupaten Malang, Jawa Timur.</b>",
+            alamat: "Sekretariat Yayasan Lentera berlokasi di:<br><b>Jln Raya Gunung Kawi, Dusun Kluwut, Desa Kluwut RT 03 / RW 01, Kecamatan Wonosari, Kabupaten Malang, Jawa Timur.</b>",
+            program: "Yayasan Lentera memiliki 2 kategori Program Utama:<br>1. <b>Program Pendidikan</b> (PAUL, Khotmil Quran, Pengajian, dll)<br>2. <b>Program Sosial</b> (Santunan Yatim & Pendidikan Gratis).",
+            halo: "Assalamu'alaikum! 👋 Selamat datang di layanan Asisten Lentera. Ada yang bisa saya bantu jelaskan mengenai yayasan kami?",
+            terima: "Sama-sama! Semoga informasi yang saya berikan bermanfaat. Jangan ragu untuk bertanya lagi atau berkunjung langsung ke yayasan kami ya! 🙏",
+            default: "Mohon maaf, saya hanya asisten AI yang diprogram untuk menjawab pertanyaan seputar <b>Visi, Misi, Program (Pendidikan & Sosial), dan Alamat</b> Yayasan Lentera. <br><br>Coba tanyakan dengan kata kunci tersebut ya!"
+        };
+
+        function getAiResponse(text) {
+            let lowerText = text.toLowerCase();
+            if(lowerText.includes("visi")) return aiKnowledge.visi;
+            if(lowerText.includes("misi")) return aiKnowledge.misi;
+            if(lowerText.includes("pendidikan")) return aiKnowledge.pendidikan;
+            if(lowerText.includes("paul") || lowerText.includes("lansia") || lowerText.includes("lanjut")) return aiKnowledge.paul;
+            if(lowerText.includes("sosial")) return aiKnowledge.sosial;
+            if(lowerText.includes("yatim") || lowerText.includes("anak yatim") || lowerText.includes("dhuafa")) return aiKnowledge.yatim;
+            if(lowerText.includes("gratis") || lowerText.includes("biaya")) return aiKnowledge.gratis;
+            if(lowerText.includes("lokasi") || lowerText.includes("dimana") || lowerText.includes("di mana")) return aiKnowledge.lokasi;
+            if(lowerText.includes("alamat")) return aiKnowledge.alamat;
+            if(lowerText.includes("program") || lowerText.includes("kegiatan")) return aiKnowledge.program;
+            if(lowerText.includes("halo") || lowerText.includes("hai") || lowerText.includes("assalam")) return aiKnowledge.halo;
+            if(lowerText.includes("makasih") || lowerText.includes("terima kasih") || lowerText.includes("oke") || lowerText.includes("baik")) return aiKnowledge.terima;
+            
+            return aiKnowledge.default;
+        }
+
+        // Logic Mengirim Pesan menggunakan FORM (Anti-Bug Keyboard)
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            const timeNow = getWaTime();
+
+            const userMsgHtml = `
+                <div class="flex justify-end w-full pr-2">
+                    <div class="bg-[#d9fdd3] dark:bg-[#005c4b] text-[#111b21] dark:text-[#e9edef] px-3 pt-2 pb-2.5 rounded-lg shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] max-w-[90%] relative text-[14.5px] leading-relaxed mr-2">
+                        <div class="wa-bubble-tail-right"></div>
+                        <span class="break-words">${text}</span>
+                        <span class="inline-block w-12"></span>
+                        <div class="absolute bottom-1 right-1.5 flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400">
+                            <span>${timeNow}</span>
+                            <i data-lucide="check-check" class="w-[15px] h-[15px] text-[#53bdeb]"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatBody.insertAdjacentHTML('beforeend', userMsgHtml);
+            lucide.createIcons();
+            
+            chatInput.value = '';
+            
+            setTimeout(() => { chatSendBtn.disabled = true; }, 10);
+            scrollToBottom();
+
+            const typingId = 'typing-' + Date.now();
+            if(aiStatus) {
+                aiStatus.innerText = 'mengetik...'; 
+                aiStatus.classList.add('text-[#00a884]'); 
+            }
+
+            const typingHtml = `
+                <div id="${typingId}" class="flex justify-start w-full">
+                    <div class="bg-white dark:bg-[#202c33] px-3.5 py-3 rounded-lg shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] flex items-center gap-1 w-14 h-9 ml-2 relative">
+                        <div class="wa-bubble-tail-left"></div>
+                        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></div>
+                        <div class="w-1.5 h-1.5 bg-slate-400 rounded-full typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                chatBody.insertAdjacentHTML('beforeend', typingHtml);
+                scrollToBottom();
+
+                const answer = getAiResponse(text);
+                
+                setTimeout(() => {
+                    const typingEl = document.getElementById(typingId);
+                    if(typingEl) typingEl.remove();
+                    
+                    if(aiStatus) {
+                        aiStatus.innerText = 'online';
+                        aiStatus.classList.remove('text-[#00a884]');
+                    }
+
+                    const ansTime = getWaTime();
+                    const botMsgHtml = `
+                        <div class="flex justify-start w-full">
+                            <div class="bg-white dark:bg-[#202c33] text-[#111b21] dark:text-[#e9edef] px-3 pt-2 pb-2.5 rounded-lg shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] max-w-[90%] relative text-[14.5px] leading-relaxed ml-2">
+                                <div class="wa-bubble-tail-left"></div>
+                                <span class="break-words">${answer}</span>
+                                <span class="inline-block w-10"></span>
+                                <div class="absolute bottom-1 right-2 text-[11px] text-slate-500 dark:text-slate-400">
+                                    ${ansTime}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    chatBody.insertAdjacentHTML('beforeend', botMsgHtml);
+                    scrollToBottom();
+                    chatSendBtn.disabled = false;
+
+                }, 2000); 
+
+            }, 300);
+        }
+
+        if(chatForm) {
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                sendMessage();
+                setTimeout(() => { chatInput.focus(); }, 100);
+            });
+        }
+
+        if(chatInput) {
+            chatInput.addEventListener('input', function() {
+                chatSendBtn.disabled = this.value.trim() === '';
+            });
+            
+            chatInput.addEventListener('focus', function() {
+                setTimeout(scrollToBottom, 300);
+            });
+        }
+
+        // --- LIGHTBOX (MEMPERBESAR FOTO) LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            document.body.classList.add('overflow-hidden');
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            document.body.classList.remove('overflow-hidden');
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+        }
+
+        if(closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeLightbox);
+        if(lightbox) {
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
+
+        document.querySelectorAll('img').forEach(img => {
+            if(!img.closest('.contact-btn') && !img.closest('#ai-chat-panel') && !img.closest('#close-ai-panel-header')) {
+                img.classList.add('cursor-zoom-in');
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation(); 
+                    openLightbox(img.src);
+                });
+            }
+        });
+
+        // --- ANIMASI SCROLL ELEGAN (REVEAL ANIMATION) ---
+        const textSelectors = [
+            '#beranda span.inline-block', '#beranda h1', '#beranda p', '#hero-buttons', // Hero Section
+            '#visimisi h2', '#visimisi h3', '#visimisi p', '#visimisi blockquote', '#visimisi li', // Visi Misi
+            '#program h2', '#program p', '#program h3', '#program h4', '.group', // Program
+            '#galeri h2', '#galeri p', // Galeri
+            '#faq h2', '#faq p.text-lg', '.faq-item', // FAQ
+            '#kontak h4', '#kontak p', '#kontak span.font-bold', '.text-sm.text-slate-500' // Footer
+        ];
+
+        const elementsToAnimate = document.querySelectorAll(textSelectors.join(', '));
+
+        // 1. Menambahkan kelas dasar animasi ke semua elemen teks
+        elementsToAnimate.forEach(el => {
+            el.classList.add('reveal-element');
+        });
+
+        // 2. Logika Observasi Scroll (Kapan muncul dan kapan hilang)
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Muncul dengan efek delay bergelombang agar elegan
+                    const index = Array.from(elementsToAnimate).indexOf(entry.target);
+                    entry.target.style.transitionDelay = `${(index % 4) * 80}ms`;
+                    
+                    // Teks dimunculkan
+                    entry.target.classList.add('reveal-visible');
+                } else {
+                    // Teks dihilangkan secara instan saat terlewat
+                    entry.target.style.transitionDelay = '0ms';
+                    entry.target.classList.remove('reveal-visible');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -5% 0px', // Muncul sedikit sebelum pas di tengah layar
+            threshold: 0.15 // Aktif saat 15% bagian elemen sudah terlihat
+        });
+
+        // 3. Mulai pantau semua elemen
+        elementsToAnimate.forEach(el => scrollObserver.observe(el));
+
+    </script>
+</body>
+</html>
